@@ -1,6 +1,10 @@
 //%color=#444444 blockgap=8 block="SW02"
 namespace SW02 {
 
+    let calib_par_t1: number
+    let calib_par_t2: number
+    let calib_par_t3: number
+
     let calib_data_1: number[] = []
     let calib_data_2: number[] = []
 
@@ -21,7 +25,7 @@ namespace SW02 {
     export const BME680_REG_ID = 0xD0
     export const BME680_REG_RESET = 0xE0
     export const BME680_REG_CALIB_DATA_1 = 0x89
-    export const BME680_REG_CALIB_DATA_2 = 0xE1  
+    export const BME680_REG_CALIB_DATA_2 = 0xE1
 
 
     //write8
@@ -71,8 +75,12 @@ namespace SW02 {
     }
 
     function init_BME680() {
-        calib_data_1 = readBlock(BME680_REG_CALIB_DATA_1,25)
+        calib_data_1 = readBlock(BME680_REG_CALIB_DATA_1, 25)
         calib_data_2 = readBlock(BME680_REG_CALIB_DATA_2, 16)
+
+        calib_par_t1 = (calib_data_2[9]<<8) | calib_data_2[8]
+        calib_par_t2 = (calib_data_1[2] << 8) | calib_data_1[7]
+        calib_par_t3 = calib_data_1[3]
     }
 
     function setHumidityOversampling() {
