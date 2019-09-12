@@ -82,10 +82,6 @@ namespace SW02 {
         calib_par_t1 = (calib_data_2[9] << 8) | calib_data_2[8]
         calib_par_t2 = (calib_data_1[2] << 8) | calib_data_1[7]
         calib_par_t3 = calib_data_1[3]
-
-        console.logValue("x", calib_par_t1)
-        console.logValue("x", calib_par_t2)
-        console.logValue("x", calib_par_t3)
     }
 
     function setHumidityOversampling() {
