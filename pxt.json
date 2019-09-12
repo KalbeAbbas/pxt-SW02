@@ -1,6 +1,6 @@
 {
     "name": "pxt-sw02",
-    "version": "0.0.9",
+    "version": "0.0.10",
     "description": "",
     "dependencies": {
         "adafruit-metro-m0-express": "*"
