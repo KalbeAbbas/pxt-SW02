@@ -1,7 +1,7 @@
 //%color=#444444 blockgap=8 block="SW02"
 namespace SW02 {
 
-    let calib_data: number[] = []
+    let calib_data1: number[] = []
 
     let abc: number[] = []
     abc[0] = 50
@@ -57,7 +57,7 @@ namespace SW02 {
             res[i] = pins.i2cReadNumber(BME680_I2C_ADDR, NumberFormat.UInt8BE, true)
         }
 
-        res[count-1] = pins.i2cReadNumber(BME680_I2C_ADDR, NumberFormat.UInt8BE)
+        res[count - 1] = pins.i2cReadNumber(BME680_I2C_ADDR, NumberFormat.UInt8BE)
 
         return res
     }
