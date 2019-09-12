@@ -1,7 +1,20 @@
 //%color=#444444 blockgap=8 block="SW02"
 namespace SW02 {
 
-    let calib_data: number[]
+    let calib_data: number[] = []
+
+    let abc: number[] = []
+    abc[0] = 50
+
+    abc[1] = 10
+    let apple: number[] = []
+
+    apple = abc
+
+    apple[1] = 8
+
+    console.logValue("x", apple[3])
+
 
     export const BME680_I2C_ADDR = 0X76
     export const BME680_REG_ID = 0xD0
@@ -37,13 +50,16 @@ namespace SW02 {
         return pins.i2cReadNumber(BME680_I2C_ADDR, NumberFormat.Int16LE);
     }
 
-    function readBlock(reg: number, count: number): number {
+    function readBlock(reg: number, count: number): number[] {
+        let res: number[] = []
         pins.i2cWriteNumber(BME680_I2C_ADDR, reg, NumberFormat.UInt8BE, true);
         for (let i: number = 0; i < (count - 1); i++) {
-            
+            res[i] = pins.i2cReadNumber(BME680_I2C_ADDR, NumberFormat.UInt8BE, true)
         }
 
-        return 0
+        res[count-1] = pins.i2cReadNumber(BME680_I2C_ADDR, NumberFormat.UInt8BE)
+
+        return res
     }
 
     function reset() {
